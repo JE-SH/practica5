@@ -5,24 +5,14 @@
 
 #include <stdlib.h>
 #include <string.h>
-
-#include <stdlib.h>
-#include <string.h>
-
-// include NESLIB header
 #include "neslib.h"
-
-// include CC65 NES Header (PPU)
 #include <nes.h>
 
-// link the pattern table into CHR ROM
 //#link "chr_generic.s"
 
-// BCD arithmetic support
 #include "bcd.h"
 //#link "bcd.c"
 
-// VRAM update buffer
 #include "vrambuf.h"
 //#link "vrambuf.c"
 
@@ -41,11 +31,8 @@ const char PALETTE[32] = {
   0x0D,0x27,0x0F	// paleta de sprite 3
 };
 
-// setup PPU and tables
 void setup_graphics() {
-  // clear sprites
   oam_clear();
-  // set palette colors
   pal_all(PALETTE);
 }
 
@@ -55,8 +42,6 @@ void main(void)
   
   vram_adr(NAMETABLE_A); //se localiza en la dirección de la Name Table A
   vram_unrle(fondo); //Se carga el fondo o escena
-  //vram_adr(NTADR_B(2,2));		// set address
-  //vram_write("HELLO, WORLD!", 13);	// write bytes to video RAM
   
   ppu_on_all();
   while(1) {
